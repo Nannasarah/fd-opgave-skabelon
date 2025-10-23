@@ -1,0 +1,45 @@
+---
+const { title, desc, eyebrow } = Astro.props;
+---
+
+<header>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h1 class="heading">{title}</h1>
+  <p class="description">{desc}</p>
+</header>
+
+<style>
+  @layer components {
+    header {
+      text-align: left;
+    }
+    .eyebrow {
+      color: #181818;
+      font-family: var(--text-font);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 23.6px;
+      letter-spacing: 2.32px;
+      text-transform: uppercase;
+      padding-bottom: 1rem;
+    }
+    h1 {
+      color: #181818;
+      font-family: var(--heading-font);
+      font-size: 45px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 52.2px;
+    }
+    .description {
+      color: #595566;
+      font-family: var(--text-font);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 23.6px;
+      padding-block: 1rem;
+    }
+  }
+</style>

@@ -1,1 +1,41 @@
 /* Globale styles her */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /*font*/
+  --heading-font: "Cabin", sans-serif;
+  --text-font: "Lato", sans-serif;
+
+  /*colors*/
+  --primary-color1: #ffcc4a;
+  --primary-color2: #4eaf4e;
+  --primary-color3: #181818;
+  --secondary-color1: #f5f5f5;
+  --secondary-color2: #ffffff;
+
+  /*margin*/
+  --header-margin: 1.5rem;
+  --text-margin: 1.2rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: subgrid;
+  > * {
+    grid-column: full;
+  }
+}
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: [full-start] 1fr [content-start] minmax(0, 600px) [hero-start] minmax(0, 600px) [content-end] 1fr [hero-end full-end];
+  align-items: start;
+  > * {
+    /*alle bodys børn*/
+    grid-column: full;
+  }
+}

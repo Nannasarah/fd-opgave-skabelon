@@ -1,0 +1,134 @@
+---
+import Section from "@layouts/Section.astro";
+import Text from "@components/Text.astro";
+import experience from "@data/experience.json";
+---
+
+<Section background="primary-color1">
+  <div class="section">
+    <div class="text">
+      <Text eyebrow="experience" title={experience.heading} desc={experience.subheading} />
+    </div>
+
+    <div class="stats">
+      {
+        experience.stats.map((stat) => (
+          <div class="stat" style={`--percent: ${stat.value};`}>
+            <div class="circle">
+              <div class="dot" />
+              <span class="value">{stat.value}%</span>
+            </div>
+            <span class="label">{stat.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Section>
+
+<style>
+  @layer components {
+    .section {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 89px;
+
+      container-type: inline-size;
+    }
+    .text {
+      text-align: center;
+      color: rgb(255, 255, 255);
+      margin-bottom: 3rem;
+    }
+
+    .stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: end;
+      align-items: flex-start;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .label {
+        margin-top: 1rem;
+        font-size: 1rem;
+        color: #181818;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 29px;
+      }
+      .value {
+        font-size: 20cqw;
+        font-weight: bold;
+        color: rgb(0, 0, 0);
+        z-index: 1;
+      }
+    }
+
+    /* Cirklen med procent og prik */
+    .circle {
+      container: stat / inline-size;
+      --actualPercent: calc(var(--percent) * 1%);
+      --border-width: 5px;
+
+      position: relative;
+      aspect-ratio: 1;
+      width: 190px;
+      border-radius: 50%;
+      border: var(--border-width) solid transparent;
+
+      background:
+        conic-gradient(#ffcc4a 0 0) padding-box,
+        conic-gradient(#fff var(--actualPercent), #daae3c 0%) border-box;
+
+      display: grid;
+      place-items: center;
+    }
+
+    /* Prikken på kanten */
+    .circle .dot {
+      position: absolute;
+      width: 20px;
+      aspect-ratio: 1;
+      background: black;
+      border: 4px solid white;
+      border-radius: 50%;
+
+      offset-path: border-box;
+      offset-distance: var(--actualPercent);
+      offset-anchor: 50% calc(50% - var(--border-width) / 2);
+    }
+  }
+  @layer components {
+    /* Container query for max-width 700px */
+    @container (max-width: 700px) {
+      .section {
+        grid-template-columns: 1fr; /* Skift til én kolonne */
+        gap: 2rem; /* Mindre afstand */
+      }
+
+      .stats {
+        justify-content: center; /* Center stats på mindre skærme */
+        gap: 1.5rem;
+      }
+
+      .circle {
+        width: 120px; /* Mindre cirkler */
+      }
+
+      .stat .label {
+        font-size: 0.9rem; /* Mindre tekst til labels */
+      }
+
+      .value {
+        font-size: 16px; /* Mindre procent-tal */
+      }
+    }
+  }
+</style>

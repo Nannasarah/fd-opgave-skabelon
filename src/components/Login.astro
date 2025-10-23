@@ -1,0 +1,29 @@
+---
+
+---
+
+<header>
+  <button popovertarget="pop"> Login</button>
+</header>
+
+<aside id="pop" popover>
+  <div>
+    <h2>Login</h2>
+    <form>
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="#">Register</a></p>
+  </div>
+</aside>
+
+<style>
+  @layer components {
+    button {
+      border-radius: 20px;
+      background: #ffcc4a;
+      padding: 5px 15px 5px 15px;
+    }
+  }
+</style>
